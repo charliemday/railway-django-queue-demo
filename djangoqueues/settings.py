@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -127,6 +128,10 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+REDISHOST = os.environ.get("REDISHOST", "localhost")
+REDISPORT = os.environ.get("REDISPORT", 6379)
+REDISDB = os.environ.get("REDISDB", 0)
+REDISPASSWORD = os.environ.get("REDISPASSWORD", None)
 
 # Django Q Settings
 Q_CLUSTER = {
@@ -140,7 +145,9 @@ Q_CLUSTER = {
     'cpu_affinity': 1,
     'label': 'Django Q',
     'redis': {
-        'host': '127.0.0.1',
-        'port': 6379,
-        'db': 0, }
+        'host': REDISHOST,
+        'port': REDISPORT,
+        'db': REDISDB,
+        'password': REDISPASSWORD,
+    }
 }
