@@ -24,7 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7udn1cqj+7y94)pwz_squ-_hs9we-9j%2r6%#4h(6ddfb)(&b2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+PRODUCTION = os.environ.get("PRODUCTION", False)
+DEBUG = not PRODUCTION
 
 ALLOWED_HOSTS = []
 
@@ -135,7 +136,7 @@ REDISPASSWORD = os.environ.get("REDISPASSWORD", None)
 
 # Django Q Settings
 Q_CLUSTER = {
-    'name': 'myproject',
+    'name': 'djangoqueues',
     'workers': 2,
     'recycle': 500,
     'timeout': 60,
