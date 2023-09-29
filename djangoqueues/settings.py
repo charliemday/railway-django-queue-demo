@@ -27,7 +27,10 @@ SECRET_KEY = 'django-insecure-7udn1cqj+7y94)pwz_squ-_hs9we-9j%2r6%#4h(6ddfb)(&b2
 PRODUCTION = os.environ.get("PRODUCTION", False)
 DEBUG = not PRODUCTION
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "api-production-7191.up.railway.app"
+    # Add your allowed hosts here
+]
 
 
 # Application definition
